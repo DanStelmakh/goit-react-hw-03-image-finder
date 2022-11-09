@@ -68,6 +68,7 @@ export class App extends React.Component {
   render() {
     const { images, showModal, isLoading, modalImage, totalHits } = this.state;
     const { handleSubmit, toggleModal, handleLoadMoreImg } = this;
+
     return (
       <>
         <SearchBar onSubmit={handleSubmit} />
@@ -76,7 +77,9 @@ export class App extends React.Component {
           <Modal closeModal={toggleModal} modalImage={modalImage} />
         )}
 
-        {!!totalHits && <LoadMore onLoadMore={handleLoadMoreImg} />}
+        {!!totalHits && !isLoading && (
+          <LoadMore onLoadMore={handleLoadMoreImg} />
+        )}
         {isLoading && <LoadSpinner />}
       </>
     );
